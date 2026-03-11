@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQE Notion Planner — Pass SQE1 & SQE2 with Clarity</title>
+  <meta name="description" content="The Ultimate SQE Notion Planner — everything you need to pass SQE1 and SQE2. Built by a candidate, for candidates. Study materials, templates, revision notes and more." />
+  <meta name="keywords" content="SQE1 revision, SQE2 preparation, SQE study planner, Notion SQE, SQE training contract, SQE1 tips, SQE2 practice areas, solicitor qualifying exam" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #faf6f0;
+      --warm-white: #fff9f3;
+      --parchment: #f2ebe0;
+      --terracotta: #b5673a;
+      --terracotta-light: #c97a4e;
+      --terracotta-dark: #8c4e2a;
+      --ink: #2c2418;
+      --ink-mid: #5a4d3e;
+      --ink-light: #9a8c7e;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --sage: #7a9e7e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(250,246,240,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(181,103,58,0.12);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--terracotta); text-decoration: none; }
+    .nav-logo span { color: var(--ink); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta { background: var(--terracotta) !important; color: white !important; padding: 0.6rem 1.4rem !important; border-radius: 2px; }
+    .nav-cta:hover { background: var(--terracotta-dark) !important; }
+
+    /* PAGE SECTIONS */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* HERO */
+    #home {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 7rem 5% 4rem; gap: 4rem;
+      position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: ''; position: absolute; top: -10%; right: -5%;
+      width: 55%; height: 120%;
+      background: radial-gradient(ellipse at center, var(--parchment) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--terracotta); }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.6rem); font-weight: 300; line-height: 1.1; color: var(--ink); margin-bottom: 1.5rem; }
+    h1 em { font-style: italic; color: var(--terracotta); }
+    .hero-body { font-size: 1.05rem; line-height: 1.75; color: var(--ink-mid); max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; background: var(--terracotta); color: white;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2.2rem;
+      text-decoration: none; border-radius: 2px; transition: background 0.2s, transform 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-block; color: var(--ink-mid); font-size: 0.85rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+      padding: 1rem 0; border-bottom: 1px solid var(--ink-light); transition: color 0.2s, border-color 0.2s; cursor: pointer;
+    }
+    .btn-secondary:hover { color: var(--terracotta); border-color: var(--terracotta); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--parchment); }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 500; color: var(--terracotta); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.05em; margin-top: 0.3rem; }
+
+    /* NOTION MOCKUP */
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .notion-mockup {
+      width: 100%; max-width: 460px; background: white; border-radius: 12px;
+      box-shadow: 0 25px 80px rgba(44,36,24,0.15), 0 8px 30px rgba(44,36,24,0.08);
+      overflow: hidden; animation: floatUp 0.8s ease forwards; opacity: 0; transform: translateY(20px);
+    }
+    @keyframes floatUp { to { opacity: 1; transform: translateY(0); } }
+    .mockup-header { background: var(--parchment); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--gold-light); }
+    .mockup-dots { display: flex; gap: 5px; }
+    .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--gold-light); }
+    .mockup-title { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--ink-mid); margin-left: 0.5rem; }
+    .mockup-body { padding: 1.5rem; }
+    .mockup-h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; }
+    .mockup-section-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.6rem; }
+    .progress-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; }
+    .progress-label { font-size: 0.78rem; color: var(--ink-mid); width: 120px; flex-shrink: 0; }
+    .progress-bar-track { flex: 1; height: 5px; background: var(--parchment); border-radius: 3px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light)); }
+    .progress-pct { font-size: 0.72rem; color: var(--terracotta); font-weight: 500; width: 28px; text-align: right; }
+    .mockup-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1rem; }
+    .tag { font-size: 0.68rem; padding: 0.25rem 0.7rem; border-radius: 20px; font-weight: 500; }
+    .tag-orange { background: #fde8d8; color: var(--terracotta-dark); }
+    .tag-green { background: #dff0e0; color: #3a7a40; }
+    .tag-gold { background: #fdf0d5; color: #8a6a1a; }
+    .mockup-checklist { margin-top: 1.2rem; border-top: 1px solid var(--parchment); padding-top: 1rem; }
+    .check-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--ink-mid); margin-bottom: 0.5rem; }
+    .check-box { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
+    .check-box.done { background: var(--terracotta); }
+    .check-box.pending { background: var(--parchment); border: 1px solid var(--gold-light); }
+    .floating-badge {
+      position: absolute; bottom: -1rem; left: -1.5rem;
+      background: var(--ink); color: white; padding: 0.8rem 1.2rem;
+      border-radius: 8px; font-size: 0.78rem; box-shadow: 0 8px 30px rgba(44,36,24,0.2);
+    }
+    .floating-badge strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--gold); }
+
+    /* SHARED SECTION */
+    section { padding: 6rem 5%; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem;
+    }
+    .section-eyebrow::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--terracotta); }
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
+    h2 em { font-style: italic; color: var(--terracotta); }
+    .section-intro { font-size: 1rem; line-height: 1.75; color: var(--ink-mid); max-width: 560px; }
+
+    /* FEATURES */
+    #features { background: var(--warm-white); }
+    .features-header { text-align: center; margin-bottom: 4rem; }
+    .features-header .section-eyebrow { justify-content: center; }
+    .features-header .section-eyebrow::before { display: none; }
+    .features-header .section-intro { margin: 0 auto; text-align: center; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+    .feature-card {
+      background: white; border-radius: 8px; padding: 2.2rem;
+      border: 1px solid var(--parchment); transition: transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,36,24,0.1); }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--parchment); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; }
+    .feature-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 0.6rem; }
+    .feature-card p { font-size: 0.88rem; line-height: 1.7; color: var(--ink-mid); }
+
+    /* ABOUT */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-image-block { position: relative; }
+    .about-card { background: var(--parchment); border-radius: 12px; padding: 3rem; border: 1px solid var(--gold-light); }
+    .about-card-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--ink); margin-bottom: 1.5rem; }
+    .about-card-attr { font-size: 0.82rem; color: var(--ink-light); }
+    .about-card-attr strong { display: block; color: var(--terracotta); font-weight: 500; font-size: 0.88rem; margin-bottom: 0.2rem; }
+    .about-badge {
+      position: absolute; top: -1.5rem; right: -1.5rem;
+      background: var(--terracotta); color: white; width: 80px; height: 80px;
+      border-radius: 50%; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase; box-shadow: 0 4px 20px rgba(181,103,58,0.3);
+    }
+    .about-badge span { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; line-height: 1; display: block; }
+    .about-content h2 { margin-bottom: 1.2rem; }
+    .about-content p { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.2rem; }
+    .about-list { list-style: none; margin: 1.5rem 0 2rem; }
+    .about-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.9rem; color: var(--ink-mid); margin-bottom: 0.8rem; line-height: 1.6; }
+    .about-list li::before { content: '✦'; color: var(--terracotta); font-size: 0.6rem; margin-top: 0.35rem; flex-shrink: 0; }
+
+    /* SHOP */
+    #shop { background: var(--ink); color: white; }
+    #shop .section-eyebrow { color: var(--gold); }
+    #shop .section-eyebrow::before { background: var(--gold); }
+    #shop h2 { color: white; }
+    #shop h2 em { color: var(--gold); }
+    #shop .section-intro { color: rgba(255,255,255,0.6); }
+    .shop-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; max-width: 1100px; margin: 3rem auto 0; }
+    .product-single {
+      background: rgba(255,255,255,0.06); border: 1px solid var(--gold);
+      border-radius: 12px; overflow: hidden;
+    }
+    .product-single-visual {
+      height: 200px; background: linear-gradient(135deg, rgba(181,103,58,0.3), rgba(201,168,76,0.2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; border-bottom: 1px solid rgba(201,168,76,0.3);
+      position: relative;
+    }
+    .product-single-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--gold); color: var(--ink);
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2px;
+    }
+    .product-single-body { padding: 2rem; }
+    .product-single-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 500; color: white; margin-bottom: 0.6rem; }
+    .product-single-body .tagline { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem; line-height: 1.6; }
+    .product-includes { list-style: none; margin-bottom: 2rem; }
+    .product-includes li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 0.7rem; line-height: 1.5; }
+    .product-includes li::before { content: '✓'; color: var(--gold); font-weight: 600; flex-shrink: 0; }
+    .product-price-row { display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .product-price { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 500; color: var(--gold); }
+    .product-price .currency { font-size: 1.2rem; vertical-align: super; }
+    .product-price .old-price { font-size: 1.1rem; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-right: 0.5rem; }
+    .btn-buy-large {
+      background: var(--terracotta); color: white; border: none;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 1rem 2rem;
+      border-radius: 2px; cursor: pointer; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-buy-large:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+    .product-trust { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+    .trust-item { font-size: 0.75rem; color: rgba(255,255,255,0.4); display: flex; align-items: center; gap: 0.4rem; }
+
+    /* PRODUCT DETAIL */
+    .product-detail-side h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: white; margin-bottom: 1.5rem; }
+    .detail-section { margin-bottom: 2rem; }
+    .detail-section h4 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .detail-section p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .detail-tag { font-size: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 20px; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
+
+    /* TESTIMONIALS */
+    #testimonials { background: var(--parchment); }
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+    .testimonials-header .section-eyebrow { justify-content: center; }
+    .testimonials-header .section-eyebrow::before { display: none; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .testimonial-card { background: white; border-radius: 8px; padding: 2rem; border: 1px solid var(--gold-light); }
+    .stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .testimonial-card blockquote { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; line-height: 1.6; color: var(--ink); margin-bottom: 1.2rem; }
+    .testimonial-author { font-size: 0.8rem; color: var(--ink-light); }
+    .testimonial-author strong { display: block; color: var(--ink-mid); font-weight: 500; margin-bottom: 0.15rem; }
+
+    /* CONTACT */
+    #contact { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-info h2 { margin-bottom: 1rem; }
+    .contact-info p { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 2rem; }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .contact-detail-icon { width: 40px; height: 40px; background: var(--parchment); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .contact-detail-text { font-size: 0.88rem; color: var(--ink-mid); }
+    .contact-detail-text strong { display: block; color: var(--ink); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .contact-form { background: white; border-radius: 12px; padding: 2.5rem; border: 1px solid var(--parchment); box-shadow: 0 8px 40px rgba(44,36,24,0.06); }
+    .form-group { margin-bottom: 1.4rem; }
+    label { display: block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 0.5rem; }
+    input, textarea, select { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--ink); background: var(--cream); border: 1px solid var(--parchment); border-radius: 4px; padding: 0.8rem 1rem; transition: border-color 0.2s; outline: none; }
+    input:focus, textarea:focus, select:focus { border-color: var(--terracotta); box-shadow: 0 0 0 3px rgba(181,103,58,0.1); }
+    textarea { resize: vertical; min-height: 120px; }
+    .form-submit { width: 100%; background: var(--terracotta); color: white; border: none; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+    .form-submit:hover { background: var(--terracotta-dark); }
+
+    /* BLOG */
+    #blog-list { padding-top: 9rem; }
+    .blog-hero { text-align: center; padding: 0 5% 4rem; }
+    .blog-hero .section-eyebrow { justify-content: center; }
+    .blog-hero .section-eyebrow::before { display: none; }
+    .blog-hero h2 { margin: 0 auto 1rem; }
+    .blog-hero .section-intro { margin: 0 auto; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 5% 6rem; }
+    .blog-card {
+      background: white; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--parchment); cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,36,24,0.1); }
+    .blog-card-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .blog-card-body { padding: 1.5rem; }
+    .blog-card-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.6rem; }
+    .blog-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.35; }
+    .blog-card p { font-size: 0.82rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 1rem; }
+    .blog-card-meta { font-size: 0.75rem; color: var(--ink-light); display: flex; justify-content: space-between; }
+
+    /* ARTICLE VIEW */
+    #article-view { display: none; padding-top: 8rem; }
+    #article-view.active { display: block; }
+    .article-container { max-width: 740px; margin: 0 auto; padding: 0 5% 6rem; }
+    .article-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--ink-light); cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2.5rem; border: none; background: none; transition: color 0.2s; }
+    .article-back:hover { color: var(--terracotta); }
+    .article-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1rem; display: block; }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.2; color: var(--ink); margin-bottom: 1rem; }
+    .article-meta { font-size: 0.8rem; color: var(--ink-light); margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--parchment); }
+    .article-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--ink); margin: 2rem 0 0.8rem; }
+    .article-body p { font-size: 0.95rem; line-height: 1.85; color: var(--ink-mid); margin-bottom: 1.2rem; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem 0; }
+    .article-body ul li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; color: var(--ink-mid); margin-bottom: 0.6rem; line-height: 1.65; }
+    .article-body ul li::before { content: '✦'; color: var(--terracotta); font-size: 0.6rem; margin-top: 0.4rem; flex-shrink: 0; }
+    .article-body .callout { background: var(--parchment); border-left: 3px solid var(--terracotta); padding: 1.2rem 1.5rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+    .article-body .callout p { margin: 0; font-style: italic; }
+    .article-cta { background: var(--ink); color: white; border-radius: 8px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
+    .article-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: white; margin-bottom: 0.8rem; }
+    .article-cta p { font-size: 0.88rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 3rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: white; text-decoration: none; cursor: pointer; }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; cursor: pointer; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.78rem; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .animate { animation: fadeInUp 0.7s ease forwards; }
+    .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+    .animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+    @media (max-width: 900px) {
+      #home { grid-template-columns: 1fr; padding-top: 8rem; text-align: center; }
+      #home::before { display: none; }
+      .hero-body { margin: 0 auto 2.5rem; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { display: none; }
+      .features-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
+      #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+      .shop-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" onclick="showSection('home')">SQE <span>Planner</span></a>
+  <ul class="nav-links">
+    <li><a onclick="showSection('home')">Home</a></li>
+    <li><a onclick="showSection('about')">About</a></li>
+    <li><a onclick="showSection('shop')">Shop</a></li>
+    <li><a onclick="showSection('blog')">Articles</a></li>
+    <li><a onclick="showSection('contact')" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="page-home" class="page-section active">
+  <section id="home">
+    <div class="hero-content">
+      <div class="hero-eyebrow">The Ultimate SQE Study System</div>
+      <h1 class="animate animate-delay-1">Pass SQE1 & SQE2<br><em>with total clarity</em></h1>
+      <p class="hero-body animate animate-delay-2">One Notion planner. Both exams. Everything from multiple choice law to five SQE2 practice area assessments — organised, trackable, and ready to go from day one.</p>
+      <div class="hero-actions animate animate-delay-3">
+        <button class="btn-primary" onclick="showSection('shop')">Get the Planner</button>
+        <button class="btn-secondary" onclick="showSection('about')">My Story →</button>
+      </div>
+      <div class="hero-stats animate animate-delay-4">
+        <div class="stat-item"><div class="stat-number">2-in-1</div><div class="stat-label">SQE1 & SQE2</div></div>
+        <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Candidates Helped</div></div>
+        <div class="stat-item"><div class="stat-number">★ 4.9</div><div class="stat-label">Average Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="notion-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dots"><span></span><span></span><span></span></div>
+          <div class="mockup-title">📋 Ultimate SQE Planner</div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-h1">My SQE Dashboard</div>
+          <div class="mockup-section-label">SQE2 Practice Areas</div>
+          <div class="progress-row"><div class="progress-label">Property Practice</div><div class="progress-bar-track"><div class="progress-bar-fill" style="width:85%"></div></div><div class="progress-pct">85%</div></div>
+          <div class="progress-row"><div class="progress-label">Wills & Probate</div><div class="progress-bar-track"><div class="progress-bar-fill" style="width:72%"></div></div><div class="progress-pct">72%</div></div>
+          <div class="progress-row"><div class="progress-label">Dispute Resolution</div><div class="progress-bar-track"><div class="progress-bar-fill" style="width:60%"></div></div><div class="progress-pct">60%</div></div>
+          <div class="mockup-tags">
+            <span class="tag tag-orange">SQE1 FLK1</span>
+            <span class="tag tag-green">SQE1 FLK2</span>
+            <span class="tag tag-gold">Advocacy</span>
+            <span class="tag tag-orange">Legal Drafting</span>
+          </div>
+          <div class="mockup-checklist">
+            <div class="mockup-section-label">Today's Tasks</div>
+            <div class="check-item"><div class="check-box done">✓</div><span>SQE1 practice questions — Contract Law</span></div>
+            <div class="check-item"><div class="check-box done">✓</div><span>CMA mock — clinical negligence</span></div>
+            <div class="check-item"><div class="check-box pending"></div><span>Advocacy prep — default judgment</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="floating-badge"><strong>Notion</strong>Ready to use instantly</div>
+    </div>
+  </section>
+
+  <section id="features" style="background: var(--warm-white)">
+    <div class="features-header">
+      <div class="section-eyebrow" style="justify-content:center">What's Inside</div>
+      <h2>Everything you need, <em>both exams</em></h2>
+      <p class="section-intro">One planner that covers the full SQE journey — from your first FLK1 revision session to your final SQE2 assessment.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">📚</div><h3>SQE1 Question Tracker</h3><p>Log and analyse your SQE1 practice questions across all FLK1 and FLK2 topic areas. Identify weak spots before the real exam.</p></div>
+      <div class="feature-card"><div class="feature-icon">📐</div><h3>SAFARI Framework</h3><p>Structured Case & Matter Analysis prompts covering all five SQE2 practice areas so you never miss a key issue under exam pressure.</p></div>
+      <div class="feature-card"><div class="feature-icon">📅</div><h3>Dual Exam Planner</h3><p>A calendar-linked revision planner that works whether you're sitting SQE1, SQE2, or both — spaced intelligently around your assessment dates.</p></div>
+      <div class="feature-card"><div class="feature-icon">⚖️</div><h3>Precedent Library</h3><p>Ready-to-practice templates for Particulars of Claim, Defence, TR1, Wills, board minutes and more — formatted and annotated.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎯</div><h3>SRA Competency Map</h3><p>Every SQE2 assessment type mapped to the SRA's performance indicators, so you know exactly what is being tested and how to evidence it.</p></div>
+      <div class="feature-card"><div class="feature-icon">✨</div><h3>Free Updates Forever</h3><p>Buy once and receive all future updates as the SQE syllabus evolves. Your planner grows with you through your whole SQE journey.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<div id="page-about" class="page-section">
+  <section id="about" style="padding-top:9rem">
+    <div class="about-image-block">
+      <div class="about-card">
+        <p class="about-card-quote">"I kept searching for a planner that understood the SQE in full — both exams, the five practice areas, the sheer volume of it. When I couldn't find one, I built it."</p>
+        <div class="about-card-attr"><strong>Charlotte Atkins</strong>LLM (Legal Practice) Candidate · University of Law</div>
+      </div>
+      <div class="about-badge"><span>★</span>Candidate Built</div>
+    </div>
+    <div class="about-content">
+      <div class="section-eyebrow">The Story</div>
+      <h2>Built by a candidate <em>in the thick of it</em></h2>
+      <p>I'm Charlotte — an LLM (Legal Practice) student who has sat SQE1 and is working through SQE2 preparation across all five practice areas. I know exactly what it feels like to stare down FLK1, FLK2, Advocacy, Client Interviewing, Legal Drafting, Legal Writing, and Case & Matter Analysis all at once.</p>
+      <p>Generic revision tools don't cut it for the SQE. The assessments are specific, the time constraints are brutal, and the SRA's competency framework is detailed. I built this planner because I needed it — and I've refined it based on what actually helps candidates pass.</p>
+      <ul class="about-list">
+        <li>Distinction in PGDL — I know how to study effectively under real pressure</li>
+        <li>Prior professional experience in the Lloyd's and London insurance market</li>
+        <li>Training contract secured at Stevens & Bolton LLP commencing September 2026</li>
+        <li>Hundreds of SQE candidates already using the planner successfully</li>
+      </ul>
+      <button class="btn-primary" onclick="showSection('shop')">Get the Planner</button>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ SHOP ══════════════ -->
+<div id="page-shop" class="page-section">
+  <section id="shop" style="padding-top:9rem">
+    <div class="section-eyebrow">The Planner</div>
+    <h2>The <em>Ultimate SQE Planner</em></h2>
+    <p class="section-intro">One purchase. Both exams. Everything you need to go from SQE1 revision to SQE2 assessments with total clarity.</p>
+    <div class="shop-layout">
+      <div class="product-single">
+        <div class="product-single-visual">
+          📋
+          <div class="product-single-badge">Best Seller</div>
+        </div>
+        <div class="product-single-body">
+          <h3>The Ultimate SQE Planner</h3>
+          <p class="tagline">A complete Notion system for SQE1 & SQE2 — study materials, templates, revision notes, practice trackers and more, all in one place.</p>
+          <ul class="product-includes">
+            <li>SQE1 question log & topic tracker for FLK1 and FLK2</li>
+            <li>SQE2 dashboard covering all five practice areas</li>
+            <li>SAFARI framework for Case & Matter Analysis</li>
+            <li>Assessment logs for all five SQE2 assessment types</li>
+            <li>Precedent library — Particulars of Claim, Wills, TR1 & more</li>
+            <li>SRA competency indicator mapping</li>
+            <li>Dual exam revision calendar</li>
+            <li>Revision notes and summary sheets</li>
+            <li>Free lifetime updates</li>
+          </ul>
+          <div class="product-price-row">
+            <div class="product-price"><span class="old-price">£49</span><span class="currency">£</span>29</div>
+            <button class="btn-buy-large">Buy Now — £29</button>
+          </div>
+          <div class="product-trust">
+            <span class="trust-item">✓ Instant Notion access</span>
+            <span class="trust-item">✓ One-time payment</span>
+            <span class="trust-item">✓ Free updates</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-detail-side">
+        <h3>What makes this planner different?</h3>
+        <div class="detail-section">
+          <h4>Built for the real SQE</h4>
+          <p>Unlike generic law revision tools, every section is designed around the SRA's actual assessment criteria. You're not just organising notes — you're practising exactly what the examiners are looking for.</p>
+        </div>
+        <div class="detail-section">
+          <h4>Covers SQE1 & SQE2 together</h4>
+          <p>Most candidates are juggling both exams. This planner treats them as one integrated journey — so your FLK1 topic tracker feeds into your SQE2 legal knowledge, and your revision calendar accounts for both.</p>
+        </div>
+        <div class="detail-section">
+          <h4>Works in Notion — no setup needed</h4>
+          <p>Duplicate the template into your free Notion account and start immediately. No apps to download, no technical knowledge required.</p>
+        </div>
+        <div class="detail-section">
+          <h4>Topics covered</h4>
+          <div class="detail-tags">
+            <span class="detail-tag">Contract Law</span>
+            <span class="detail-tag">Tort Law</span>
+            <span class="detail-tag">Land Law</span>
+            <span class="detail-tag">Criminal Law</span>
+            <span class="detail-tag">Equity & Trusts</span>
+            <span class="detail-tag">Constitutional Law</span>
+            <span class="detail-tag">Property Practice</span>
+            <span class="detail-tag">Wills & Probate</span>
+            <span class="detail-tag">Dispute Resolution</span>
+            <span class="detail-tag">Business Law</span>
+            <span class="detail-tag">Criminal Practice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" style="background: var(--parchment)">
+    <div class="testimonials-header">
+      <div class="section-eyebrow" style="justify-content:center">Reviews</div>
+      <h2>What <em>candidates say</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Having SQE1 and SQE2 in the same planner is a game changer. I finally feel like I'm working through one coherent system rather than two separate panics."</blockquote><div class="testimonial-author"><strong>Sarah M.</strong>SQE Candidate, London</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"The SAFARI framework section and the precedent library alone are worth every penny. My mock scores improved significantly within two weeks."</blockquote><div class="testimonial-author"><strong>James T.</strong>SQE2 Candidate, Manchester</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><blockquote>"Built by a candidate who clearly gets it. The SRA competency mapping shows Charlotte actually understands what the assessors want to see."</blockquote><div class="testimonial-author"><strong>Priya K.</strong>SQE Candidate, Birmingham</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ BLOG ══════════════ -->
+<div id="page-blog" class="page-section">
+  <div id="blog-list">
+    <div class="blog-hero" style="padding-top:3rem">
+      <div class="section-eyebrow" style="justify-content:center">Articles & Guides</div>
+      <h2>SQE <em>Resources</em></h2>
+      <p class="section-intro">Practical guides written by a candidate who has been through it. Everything from SQE1 strategy to training contract applications.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card" onclick="showArticle(0)">
+        <div class="blog-card-img" style="background: linear-gradient(135deg,#fde8d8,#fdf0d5)">📖</div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">SQE1 Guide</div>
+          <h3>How to Pass SQE1: A Complete Revision Strategy</h3>
+          <p>FLK1, FLK2, and the 180 questions that stand between you and qualification. Here's how to approach all of it.</p>
+          <div class="blog-card-meta"><span>By Charlotte Atkins</span><span>8 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showArticle(1)">
+        <div class="blog-card-img" style="background: linear-gradient(135deg,#dff0e0,#fdf0d5)">⚖️</div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">SQE2 Guide</div>
+          <h3>SQE2 Practice Areas Explained: What You Actually Need to Know</h3>
+          <p>A clear breakdown of all five SQE2 practice areas, the assessment types, and how to prepare for each one effectively.</p>
+          <div class="blog-card-meta"><span>By Charlotte Atkins</span><span>10 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showArticle(2)">
+        <div class="blog-card-img" style="background: linear-gradient(135deg,#e8e0f5,#fde8d8)">🆚</div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">SQE Overview</div>
+          <h3>SQE1 vs SQE2: What's the Difference and How to Prepare for Both</h3>
+          <p>The two exams are completely different in style and content. Understanding the distinction is the first step to passing both.</p>
+          <div class="blog-card-meta"><span>By Charlotte Atkins</span><span>7 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showArticle(3)">
+        <div class="blog-card-img" style="background: linear-gradient(135deg,#fdf0d5,#dff0e0)">💼</div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Training Contracts</div>
+          <h3>How to Secure a Training Contract While Studying for the SQE</h3>
+          <p>Balancing SQE prep with a training contract search is tough but doable. Here's a practical approach that worked for me.</p>
+          <div class="blog-card-meta"><span>By Charlotte Atkins</span><span>9 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showArticle(4)">
+        <div class="blog-card-img" style="background: linear-gradient(135deg,#fde8d8,#e8e0f5)">🧠</div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag">Study Tips</div>
+          <h3>The Best Way to Use Notion for SQE Revision</h3>
+          <p>Why Notion is the ideal tool for SQE candidates, and how to structure your workspace so it actually saves you time.</p>
+          <div class="blog-card-meta"><span>By Charlotte Atkins</span><span>6 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE VIEW -->
+  <div id="article-view">
+    <div class="article-container">
+      <button class="article-back" onclick="closeArticle()">← Back to Articles</button>
+      <div id="article-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<div id="page-contact" class="page-section">
+  <section id="contact" style="padding-top:9rem">
+    <div class="contact-info">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2>Questions? I'd <em>love to help</em></h2>
+      <p>Whether you have a question about the planner, want to share feedback, or are interested in bulk orders for your study group — drop me a message.</p>
+      <div class="contact-detail"><div class="contact-detail-icon">✉️</div><div class="contact-detail-text"><strong>Email</strong>hello@sqeplanner.co.uk</div></div>
+      <div class="contact-detail"><div class="contact-detail-icon">💬</div><div class="contact-detail-text"><strong>Response Time</strong>Usually within 24 hours</div></div>
+      <div class="contact-detail"><div class="contact-detail-icon">🎓</div><div class="contact-detail-text"><strong>Community</strong>Join the SQE Candidates discussion on Reddit</div></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Sarah Jones" /></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="sarah@example.com" /></div>
+      <div class="form-group"><label>Subject</label><select><option>Question about the planner</option><option>Technical support</option><option>Bulk / group order</option><option>Press / partnership</option><option>Other</option></select></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="How can I help?"></textarea></div>
+      <button class="form-submit">Send Message</button>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo" onclick="showSection('home')">SQE <span>Planner</span></span>
+  <ul class="footer-links">
+    <li><a onclick="showSection('home')">Home</a></li>
+    <li><a onclick="showSection('about')">About</a></li>
+    <li><a onclick="showSection('shop')">Shop</a></li>
+    <li><a onclick="showSection('blog')">Articles</a></li>
+    <li><a onclick="showSection('contact')">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 SQE Planner · Built by a candidate, for candidates.</p>
+</footer>
+
+<script>
+const articles = [
+  {
+    tag: "SQE1 Guide",
+    title: "How to Pass SQE1: A Complete Revision Strategy",
+    meta: "By Charlotte Atkins · 8 min read · SQE1, Revision Strategy, FLK1, FLK2",
+    content: `
+      <h3>What is SQE1?</h3>
+      <p>The Solicitors Qualifying Examination Part 1 (SQE1) is a centralised assessment set by the Solicitors Regulation Authority (SRA). It tests functioning legal knowledge across two papers — Functioning Legal Knowledge 1 (FLK1) and Functioning Legal Knowledge 2 (FLK2) — each consisting of 180 single best answer (SBA) multiple choice questions.</p>
+      <p>SQE1 replaced the old LPC route as the primary route to qualification for most new solicitors. If you're studying an LLM (Legal Practice) or completing a PGDL, SQE1 is almost certainly on your horizon.</p>
+      <h3>FLK1 vs FLK2: What's Tested?</h3>
+      <p>FLK1 covers:</p>
+      <ul><li>Business Law and Practice</li><li>Dispute Resolution</li><li>Contract Law</li><li>Tort Law</li><li>The Legal System of England and Wales</li><li>Constitutional and Administrative Law & EU Law</li><li>Legal Services</li></ul>
+      <p>FLK2 covers:</p>
+      <ul><li>Property Practice</li><li>Wills and Administration of Estates</li><li>Solicitors Accounts</li><li>Land Law</li><li>Trusts</li><li>Criminal Law and Practice</li></ul>
+      <div class="callout"><p>The pass mark is not published in advance. The SRA uses a process called Modified Angoff to set the pass mark after each sitting, meaning it varies slightly. Aim for 75%+ to give yourself a comfortable buffer.</p></div>
+      <h3>Building Your Revision Strategy</h3>
+      <p>The most effective SQE1 candidates don't try to memorise everything — they learn to apply legal principles quickly and accurately under time pressure. You have two minutes per question, which sounds generous until you're deep into a complex scenario at question 140.</p>
+      <p>A strong strategy has three phases: first, systematic topic coverage; second, high-volume practice questions; third, targeted weak-spot revision. The mistake most candidates make is spending too long in phase one and not enough in phase three.</p>
+      <h3>How Many Practice Questions Should You Do?</h3>
+      <p>Aim for a minimum of 1,500 to 2,000 practice questions in total across both papers. Quality matters, but so does volume — your brain needs repetition to build the pattern recognition that makes SBA questions feel manageable rather than overwhelming.</p>
+      <ul><li>Use your question log to track which topics you're getting wrong</li><li>Prioritise revision based on your error rate, not how interesting the topic is</li><li>Redo questions you got wrong, not just the ones you found easy</li></ul>
+      <h3>Timing and Exam Technique</h3>
+      <p>Practice under timed conditions from early in your preparation. Many candidates are caught out by the pace of SQE1 — 180 questions in three hours means you cannot afford to dwell. If you don't know an answer within 90 seconds, make your best guess, mark it for review, and move on.</p>
+      <div class="callout"><p>The Ultimate SQE Planner includes a dedicated SQE1 question tracker that lets you log every practice question by topic, mark it as correct or incorrect, and automatically surface your weakest areas for targeted revision.</p></div>
+    `
+  },
+  {
+    tag: "SQE2 Guide",
+    title: "SQE2 Practice Areas Explained: What You Actually Need to Know",
+    meta: "By Charlotte Atkins · 10 min read · SQE2, Practice Areas, Assessments, SRA",
+    content: `
+      <h3>What is SQE2?</h3>
+      <p>SQE2 tests practical legal skills across five practice areas. Unlike SQE1, which is multiple choice, SQE2 is skills-based — you will be assessed through written and oral assessments that replicate what a newly qualified solicitor is actually expected to do on the job.</p>
+      <p>The five practice areas are: Criminal Law and Practice, Dispute Resolution, Property Practice, Wills and Intestacy / Probate Administration and Practice, and Business Law and Practice.</p>
+      <h3>The Five Assessment Types</h3>
+      <p>Across the five practice areas, you will be assessed in five different skill types:</p>
+      <ul>
+        <li><strong>Client Interviewing and Attendance Note</strong> — a live role-play with an actor client, followed by a written attendance note</li>
+        <li><strong>Advocacy and Persuasive Oral Communication</strong> — an oral hearing before a simulated tribunal or court</li>
+        <li><strong>Case and Matter Analysis (CMA)</strong> — a written analysis of a legal scenario using the SAFARI framework</li>
+        <li><strong>Legal Research and Written Advice</strong> — written legal advice based on a research task</li>
+        <li><strong>Legal Drafting</strong> — producing a legal document such as a will, contract clause, or court pleading</li>
+      </ul>
+      <div class="callout"><p>The SRA assesses each skill against published performance indicators. Knowing these indicators is not optional — they are the marking framework. Make sure you have read them before your first mock.</p></div>
+      <h3>How to Approach Each Assessment Type</h3>
+      <p>Client Interviewing rewards thorough preparation and structure. Use a standard opening, establish the client's objectives early, identify AML and conflict of interest issues, and close with a clear summary of next steps. The attendance note should reflect what was discussed, not just what you planned to say.</p>
+      <p>Advocacy requires you to know your CPR inside out. For interim hearings, this means understanding the relevant test (the American Cyanamid principles for injunctions, the Denton v White framework for relief from sanctions) and being able to apply it on your feet.</p>
+      <p>CMA is the most structured assessment. The SAFARI framework — Situation, Assets, Funding, Advice, Risk, Instruction — gives you a reliable scaffold to work through any scenario without missing key issues under time pressure.</p>
+      <h3>Managing Five Practice Areas at Once</h3>
+      <p>The sheer breadth of SQE2 is what overwhelms most candidates. The answer is not to know everything perfectly — it is to have a reliable system that ensures nothing falls through the cracks.</p>
+      <ul><li>Dedicate specific time blocks to each practice area rather than working through them chronologically</li><li>Produce a mock for every assessment type before your actual sitting</li><li>Use feedback from mocks to identify pattern errors, not just individual mistakes</li></ul>
+    `
+  },
+  {
+    tag: "SQE Overview",
+    title: "SQE1 vs SQE2: What's the Difference and How to Prepare for Both",
+    meta: "By Charlotte Atkins · 7 min read · SQE1, SQE2, Qualification Route, SRA",
+    content: `
+      <h3>The Fundamental Difference</h3>
+      <p>SQE1 and SQE2 are designed to test completely different things. SQE1 tests whether you know the law — can you identify the correct legal principle and apply it to a set of facts in a multiple choice format? SQE2 tests whether you can act like a lawyer — can you draft a document, advise a client, and advocate in a hearing to the standard expected of a newly qualified solicitor?</p>
+      <p>This distinction matters enormously for how you study. The skills that make you good at SQE1 (broad topic coverage, fast recall, pattern recognition in MCQs) are not the same skills that make you good at SQE2 (structured analysis, professional communication, document drafting). You need to build both.</p>
+      <h3>When Do Most Candidates Sit Each Exam?</h3>
+      <p>Most candidates sit SQE1 during or after their PGDL or LLM (Legal Practice), and then sit SQE2 thereafter. However, there is no rule preventing you from sitting them in any order or sitting both in the same assessment window. Some training contracts require you to have passed both before commencing.</p>
+      <div class="callout"><p>Check the specific requirements of your training contract offer carefully. Some firms require SQE1 only before commencing; others require both. Stevens & Bolton, for example, are increasingly clear on their expectations — make sure you know yours.</p></div>
+      <h3>The Knowledge Overlap</h3>
+      <p>The good news is that SQE1 and SQE2 are not entirely separate knowledge bases. The legal knowledge you build for SQE1 — particularly in Property Practice, Wills, Business Law, Criminal Law, and Dispute Resolution — feeds directly into SQE2. Revising SQE1 well makes SQE2 easier.</p>
+      <p>The mistake is treating them as two completely separate revision exercises. Build your Notion planner to link SQE1 topic notes directly to the corresponding SQE2 practice area, so the same revision does double duty.</p>
+      <h3>Building a Combined Study Plan</h3>
+      <ul>
+        <li>Start SQE1 topic coverage early — it underpins everything else</li>
+        <li>Introduce SQE2 skills practice before you have finished all SQE1 topics</li>
+        <li>Use the same notes for both wherever the content overlaps</li>
+        <li>Set aside specific time in the weeks before SQE2 to practise each of the five assessment types individually</li>
+        <li>Do not sacrifice SQE2 mock practice for extra SQE1 cramming — skills need repetition, not last-minute reading</li>
+      </ul>
+    `
+  },
+  {
+    tag: "Training Contracts",
+    title: "How to Secure a Training Contract While Studying for the SQE",
+    meta: "By Charlotte Atkins · 9 min read · Training Contracts, SQE, Law Firms, Applications",
+    content: `
+      <h3>The Pressure Candidates Don't Talk About</h3>
+      <p>Most SQE preparation guides focus entirely on passing the exams. But for the majority of candidates, the training contract search is happening at exactly the same time — and it is at least as stressful. Drafting cover letters the night before an advocacy mock is not a hypothetical. It is the reality for thousands of candidates every year.</p>
+      <p>The good news is that managing both is possible, and the skills you are building for SQE2 — structured analysis, clear legal writing, professional client communication — are exactly the skills law firms are looking for in their trainees.</p>
+      <h3>When to Start Applying</h3>
+      <p>The honest answer is: earlier than you think. Many large and mid-size firms run vacation scheme and training contract applications on a rolling basis, and the most competitive firms open their windows 18 months to two years before the training contract start date. If you are sitting SQE2 in 2026 and hoping to start a training contract in September 2026, those applications should have been submitted in 2024 or early 2025.</p>
+      <p>For specialist firms and smaller practices, the timeline is often shorter and more flexible. Human rights and public interest firms, niche commercial practices, and regional firms frequently recruit on a more reactive basis — meaning a strong application and a well-timed approach can move quickly.</p>
+      <div class="callout"><p>Personal connections remain extremely valuable in legal recruitment, particularly for specialist practices. A warm introduction through a trusted contact is worth ten cold applications. Invest time in building genuine professional relationships, not just sending CVs.</p></div>
+      <h3>What Law Firms Actually Want to See</h3>
+      <p>Beyond academic grades and SQE results, firms are looking for evidence of commercial or legal awareness, genuine interest in their specific practice area, and the ability to communicate professionally under pressure. These are not abstract qualities — they are demonstrable through the work you are already doing as an SQE candidate.</p>
+      <ul>
+        <li>Your SQE2 mock advocacy and client interviewing practice is genuine skills evidence</li>
+        <li>Prior professional experience (even outside law) demonstrates commercial awareness</li>
+        <li>Entrepreneurial activity — like building and selling a study product — shows initiative and business understanding</li>
+        <li>Clarity about why you want to work at that specific firm, and why their practice areas match your interests, matters more than you might expect</li>
+      </ul>
+      <h3>Balancing Applications with SQE Revision</h3>
+      <p>Batch your application work rather than spreading it across every day. Set aside two to three focused sessions per week for applications and use the rest of your time exclusively for SQE revision. This prevents the mental context-switching that kills productivity in both directions.</p>
+      <p>Use your Notion planner to track both your SQE2 preparation and your application pipeline in the same workspace — so you always know where you stand on both fronts without one bleeding into the other.</p>
+    `
+  },
+  {
+    tag: "Study Tips",
+    title: "The Best Way to Use Notion for SQE Revision",
+    meta: "By Charlotte Atkins · 6 min read · Notion, Study Tools, SQE Organisation, Productivity",
+    content: `
+      <h3>Why Notion Works for SQE Candidates</h3>
+      <p>The SQE has a scope problem. Between SQE1 (fifteen topic areas across two papers) and SQE2 (five practice areas, five assessment types), you are managing an enormous volume of material across two structurally different exams. Most revision tools are built for one thing — either note-taking or task tracking or progress monitoring. Notion does all three in the same workspace, which is why it is uniquely suited to SQE preparation.</p>
+      <p>The other reason is flexibility. The SQE is not like A-levels or a university exam with a set syllabus booklet. The SRA publishes performance indicators and topic guides, but how you structure your revision is entirely up to you. Notion lets you build a system that matches the way you think and the way the assessments are structured — rather than forcing you into a pre-built format that might not suit you.</p>
+      <h3>The Core Workspace Structure</h3>
+      <p>A well-structured SQE Notion workspace has four main components: a master dashboard that gives you an overview of everything at a glance; a topic database for your SQE1 notes; a practice area hub for SQE2 materials; and a revision calendar that links everything together.</p>
+      <ul>
+        <li><strong>Master dashboard</strong> — progress bars by topic and practice area, today's tasks, upcoming assessments</li>
+        <li><strong>SQE1 topic database</strong> — one page per topic with summary notes, key cases, and a linked question log</li>
+        <li><strong>SQE2 practice area hub</strong> — assessment trackers, precedent library, and performance indicator checklists</li>
+        <li><strong>Revision calendar</strong> — a database-linked calendar so every revision session maps to specific content</li>
+      </ul>
+      <div class="callout"><p>The key principle is that everything links to everything else. Your SQE1 Contract Law page should link directly to your SQE2 Business Law practice area content. One revision session should serve both exams wherever the knowledge overlaps.</p></div>
+      <h3>Common Mistakes to Avoid</h3>
+      <p>The most common mistake is spending more time building your Notion workspace than actually revising. A beautiful dashboard with no content is worse than a simple Word document full of notes. The structure should take an afternoon to set up — not a week.</p>
+      <p>The second mistake is not using the linked database functionality. Notion's real power comes from relational databases — linking your question log to your topic database, linking your mock assessment log to your practice area pages. If you are just using Notion as a fancy notes app, you are missing most of the value.</p>
+      <h3>Getting Started Immediately</h3>
+      <p>The fastest way to get a well-structured SQE Notion workspace is to use a pre-built template designed specifically for SQE candidates. The Ultimate SQE Planner gives you the complete workspace — master dashboard, all databases, linked structures, precedent library — so you can duplicate it into your free Notion account and start revising within minutes, rather than spending days building from scratch.</p>
+    `
+  }
+];
+
+function showSection(name) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) {
+    target.classList.add('active');
+    // If showing blog, make sure list is visible
+    if (name === 'blog') {
+      document.getElementById('blog-list').style.display = 'block';
+      document.getElementById('article-view').style.display = 'none';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showArticle(index) {
+  const a = articles[index];
+  document.getElementById('blog-list').style.display = 'none';
+  const view = document.getElementById('article-view');
+  view.style.display = 'block';
+  document.getElementById('article-content').innerHTML = `
+    <span class="article-tag">${a.tag}</span>
+    <h1 class="article-title">${a.title}</h1>
+    <div class="article-meta">${a.meta}</div>
+    <div class="article-body">${a.content}</div>
+    <div class="article-cta">
+      <h3>Ready to get organised?</h3>
+      <p>The Ultimate SQE Planner gives you everything covered in this article — and much more — in one ready-to-use Notion template.</p>
+      <button class="btn-primary" onclick="showSection('shop')">Get the Planner — £29</button>
+    </div>
+  `;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeArticle() {
+  document.getElementById('blog-list').style.display = 'block';
+  document.getElementById('article-view').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.style.animation = 'fadeInUp 0.7s ease forwards';
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.feature-card, .blog-card, .testimonial-card').forEach(el => {
+  el.style.opacity = '0';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
